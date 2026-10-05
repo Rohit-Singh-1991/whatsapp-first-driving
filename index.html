@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DriveConnect — WhatsApp-first Driver Booking</title>
+<meta name="description" content="WhatsApp-first driver booking platform MVP">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#f6f8fb;color:#152238}
+.top{background:linear-gradient(135deg,#0b7a52,#19a974);color:#fff;padding:22px 6%;display:flex;justify-content:space-between;align-items:center}.brand{font-size:24px;font-weight:800}.badge{background:#ffffff22;border:1px solid #ffffff44;padding:8px 12px;border-radius:99px;font-size:12px}
+.hero{padding:52px 6% 36px;background:linear-gradient(135deg,#effaf5,#fff)}.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.02;margin:0 0 16px;max-width:760px}.hero p{font-size:18px;color:#526174;max-width:680px;line-height:1.6}.chips{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.chip{padding:9px 13px;background:#fff;border:1px solid #dfe7e3;border-radius:99px;font-size:13px}
+.wrap{max-width:1180px;margin:auto;padding:28px 6% 60px}.tabs{display:flex;gap:8px;background:#eaf0f3;padding:6px;border-radius:14px;margin-bottom:22px}.tab{border:0;background:transparent;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}.tab.active{background:#fff;box-shadow:0 2px 8px #14213d12;color:#087a52}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.card{background:#fff;border:1px solid #e5eaf0;border-radius:18px;padding:22px;box-shadow:0 8px 30px #15223808}.card h2{margin:0 0 8px}.muted{color:#697789;font-size:14px}.steps{display:grid;gap:12px;margin:18px 0}.step{display:flex;gap:14px;align-items:flex-start;padding:14px;background:#f8fafb;border-radius:13px}.num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#e4f7ef;color:#087a52;font-weight:800;flex:none}
+label{display:block;font-size:13px;font-weight:700;margin:13px 0 6px}input,select{width:100%;padding:13px;border:1px solid #d9e1e8;border-radius:10px;font:inherit;background:#fff}button.primary{width:100%;padding:14px;border:0;border-radius:11px;background:#087a52;color:#fff;font-weight:800;font-size:15px;cursor:pointer;margin-top:16px}button.secondary{padding:11px 14px;border:1px solid #d7e0e7;border-radius:10px;background:#fff;font-weight:700;cursor:pointer}
+.fare{margin-top:16px;padding:16px;border-radius:14px;background:#effaf5;border:1px solid #c9ebdc;display:none}.fare strong{font-size:28px}.success{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#ecfdf5;color:#06643f}.panel{display:none}.panel.active{display:block}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat{padding:16px;background:#f7f9fb;border-radius:13px}.stat b{display:block;font-size:25px;margin-top:5px}.status{display:inline-block;padding:6px 9px;border-radius:99px;background:#eaf7f1;color:#087a52;font-size:12px;font-weight:800}
+footer{text-align:center;padding:24px;color:#718096;font-size:12px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.hero{padding-top:36px}.statgrid{grid-template-columns:1fr 1fr}.tabs{overflow:auto}.tab{white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">DriveConnect</div><div class="badge">LIVE MVP • WhatsApp-first booking</div></header>
+<section class="hero"><div class="wrap" style="padding:0"><h1>Book a driver without downloading another app.</h1><p>A simple customer-to-driver workflow designed around WhatsApp, with fare estimation, booking confirmation, driver status and an owner dashboard.</p><div class="chips"><span class="chip">💬 WhatsApp-first</span><span class="chip">🚗 Driver dispatch</span><span class="chip">💳 UPI / Cash</span><span class="chip">📊 Business dashboard</span></div></div></section>
+<main class="wrap">
+<div class="tabs">
+<button class="tab active" data-tab="customer">Customer</button><button class="tab" data-tab="driver">Driver</button><button class="tab" data-tab="admin">Business</button>
+</div>
+<section id="customer" class="panel active">
+<div class="grid"><div class="card"><h2>Create a booking</h2><p class="muted">Demo the customer journey from pickup to confirmation.</p>
+<label>Pickup location</label><input id="pickup" placeholder="e.g. Dwarka Sector 10">
+<label>Destination</label><input id="drop" placeholder="e.g. IGI Airport">
+<label>Vehicle</label><select id="vehicle"><option value="450">Sedan — ₹450</option><option value="650">SUV — ₹650</option><option value="350">Hatchback — ₹350</option></select>
+<button class="primary" id="estimate">Get fare & continue</button>
+<div class="fare" id="fare"><div class="muted">Estimated fare</div><strong id="amount">₹450</strong><div class="muted">Pay by UPI or Cash after confirmation.</div><button class="primary" id="confirm">Confirm booking</button></div>
+<div class="success" id="success">✅ Booking confirmed! <b id="bookingId"></b><br>Driver assignment is now in progress.</div>
+</div>
+<div class="card"><h2>How it works</h2><div class="steps"><div class="step"><span class="num">1</span><div><b>Customer messages on WhatsApp</b><div class="muted">No new app download required.</div></div></div><div class="step"><span class="num">2</span><div><b>System calculates fare</b><div class="muted">Pickup, destination and vehicle are captured.</div></div></div><div class="step"><span class="num">3</span><div><b>Booking reaches a driver</b><div class="muted">Driver accepts and updates the trip status.</div></div></div><div class="step"><span class="num">4</span><div><b>Business sees everything</b><div class="muted">Bookings, drivers and trip progress in one place.</div></div></div></div></div></div>
+</section>
+<section id="driver" class="panel"><div class="card"><h2>Driver view</h2><p class="muted">Example of the operational status flow.</p><div class="statgrid"><div class="stat">Today's trips<b>8</b></div><div class="stat">Earnings<b>₹3,240</b></div><div class="stat">Rating<b>4.9 ★</b></div></div><div class="step"><span class="num">1</span><div><b>Booking #DC1024</b><div class="muted">Dwarka Sector 10 → IGI Airport</div></div><span class="status">New</span></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="secondary" onclick="this.textContent='Accepted ✓'">Accept</button><button class="secondary" onclick="this.textContent='On the way ✓'">On the way</button><button class="secondary" onclick="this.textContent='Trip completed ✓'">Complete</button></div></div></section>
+<section id="admin" class="panel"><div class="card"><h2>Business dashboard</h2><p class="muted">A single view for the owner/operator.</p><div class="statgrid"><div class="stat">Active bookings<b>12</b></div><div class="stat">Available drivers<b>7</b></div><div class="stat">Today's revenue<b>₹18,650</b></div></div><div class="step"><span class="num">✓</span><div><b>Booking #DC1024</b><div class="muted">Customer: Demo Customer · Sedan · ₹450</div></div><span class="status">Driver assigned</span></div><div class="step"><span class="num">✓</span><div><b>Booking #DC1025</b><div class="muted">Customer: Demo Customer · SUV · ₹650</div></div><span class="status">On the way</span></div></div></section>
+</main><footer>DriveConnect MVP • Demo environment • Production-ready architecture can add real WhatsApp Business API, Maps, live tracking, payments and OTP.</footer>
+<script>
+const tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.remove('active'));panels.forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active')});
+const fare=document.getElementById('fare'),amount=document.getElementById('amount');
+document.getElementById('estimate').onclick=()=>{if(!document.getElementById('pickup').value||!document.getElementById('drop').value){alert('Please enter pickup and destination.');return} amount.textContent='₹'+document.getElementById('vehicle').value;fare.style.display='block'};
+document.getElementById('confirm').onclick=()=>{document.getElementById('bookingId').textContent='#DC'+Math.floor(1000+Math.random()*8999);document.getElementById('success').style.display='block';};
+</script>
+</body></html>
