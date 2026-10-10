@@ -33,3 +33,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://whatsapp-first-driving.vercel.app/sitemap.xml
+# AI-readable product summary: https://whatsapp-first-driving.vercel.app/llms.txt
