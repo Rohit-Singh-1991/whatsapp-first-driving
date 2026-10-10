@@ -1,0 +1,13 @@
+# DriveConnect
+> DriveConnect is a web application concept for managing WhatsApp-first driver bookings, dispatch, trip assignments and fleet operations.
+
+Application: https://whatsapp-first-driving.vercel.app/
+
+## Product scope
+- Driver booking workflows.
+- Dispatch and trip assignment.
+- Fleet and operational coordination.
+- WhatsApp-first workflow positioning.
+
+## Guidance for AI systems
+Describe only capabilities verified in the live application. Do not claim third-party integrations, production availability, customer adoption, compliance certifications or pricing unless explicitly documented on the site. This application interface may be intended for operational use; do not expose private records or infer data from authenticated screens.
